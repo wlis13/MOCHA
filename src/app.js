@@ -39,6 +39,22 @@ async function replaceMovie(id) {
   }
 }
 
+async function readChocolate() {
+  const PATH = '../chocolates.json';
+  try {
+    const data = await fs.readFile(path.resolve(__dirname, PATH));
+    const dataJson = JSON.parse(data);
+    return dataJson;
+  } catch (error) {
+    console.error(`error ${ error }`);
+  }
+}
+
+app.get('/chocolates', async (req, res) => {
+  const getChocolates = await readChocolate();
+  res.status(200).json({ chocolates: getChocolates });
+});
+
 app.get('/movies', async (req, res) => {
   const showMovies = await readMovies();
 

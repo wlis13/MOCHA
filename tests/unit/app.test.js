@@ -46,4 +46,14 @@ describe('test função readMovies', function () {
       expect(promise.body.showMovie).to.haveOwnProperty('price');
     });
   });
+
+  describe('GET/chocolates', function () {
+    it('test show chocolates', async function () {
+      const result = await chai.request(app).get('/chocolates');
+      expect(result.status).to.be.equal(200);
+      expect(result.body).to.haveOwnProperty('chocolates');
+      expect(result.body.chocolates).to.haveOwnProperty('brands');
+      expect(result.body.chocolates).to.haveOwnProperty('chocolates');
+    });
+  });
 });
