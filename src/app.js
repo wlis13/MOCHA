@@ -63,6 +63,7 @@ app.post('/movies', async (req, res) => {
 app.post('/movies/search/:id', async (req, res) => {
   const { id } = req.params;
   const getMovieFromId = await replaceMovie(id);
+
   res.status(201).json({ showMovie: getMovieFromId });
 });
 

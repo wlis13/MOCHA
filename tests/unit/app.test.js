@@ -35,4 +35,15 @@ describe('test função readMovies', function () {
       });
     });
   });
+
+  describe('POST/movies/search/:id ', function () {
+    it('test', async function () {
+      const promise = await chai.request(app).post(`/movies/search/${ 1 }`);
+
+      expect(promise.status).to.be.equal(201);
+      expect(promise.body).to.haveOwnProperty('showMovie');
+      expect(promise.body.showMovie).to.haveOwnProperty('movie');
+      expect(promise.body.showMovie).to.haveOwnProperty('price');
+    });
+  });
 });
